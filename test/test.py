@@ -68,3 +68,17 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+###in supabase sql editor nned do ###
+
+# DROP FUNCTION IF EXISTS public.execute_sql(text);
+
+# CREATE OR REPLACE FUNCTION public.execute_sql(sql text)
+# RETURNS void AS $$
+# BEGIN
+#     EXECUTE sql;
+# END;
+# $$ LANGUAGE plpgsql SECURITY DEFINER;
+
+# GRANT EXECUTE ON FUNCTION public.execute_sql(text) TO anon;
