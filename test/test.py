@@ -30,7 +30,8 @@ def execute_sql_command(supabase: Client, sql_command: str) -> bool:
     Executes a SQL command using the Supabase client.
     """
     try:
-        response = supabase.postgrest.rpc('execute_sql', {'sql': sql_command}).execute()
+        response = supabase.rpc('execute_sql', {'sql': sql_command}).execute()
+        print(f"Response: {response}")
         if response.status_code == 200:
             print("SQL command executed successfully.")
             return True
@@ -40,7 +41,6 @@ def execute_sql_command(supabase: Client, sql_command: str) -> bool:
     except Exception as e:
         print(f"Exception during SQL execution: {e}")
         return False
-
 # -------------------------------
 # Main Execution
 # -------------------------------
@@ -51,7 +51,7 @@ def main():
 
     # Define SQL command to create the 'purchase' table
     create_table_sql = """
-    CREATE TABLE IF NOT EXISTS public.purchase (
+    CREATE TABLE IF NOT EXISTS public.purchasenew1 (
         id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
         user_id UUID NOT NULL,
         product_id UUID NOT NULL,
